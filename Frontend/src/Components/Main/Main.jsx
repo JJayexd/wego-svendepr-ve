@@ -1,6 +1,6 @@
 export const Main = ({ children }) => {
     return (
-        <main>
+        <main className="h-screen">
             {children}
         </main>
     )
