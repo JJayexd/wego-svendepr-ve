@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../Providers/AuthProvider";
+import { LoginForm } from "../LoginForm/LoginForm"; // <- LoginForm er nu modal
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { loginData, setLoginData } = useAuth();
 
   const navItemsDesktop = [
     { name: "Find et lift", path: "/lift" },
@@ -13,6 +17,11 @@ export const Nav = () => {
     { name: "Forside", path: "/" },
     { name: "Find et lift", path: "/lift" },
   ];
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+    setLoginData('');
+  };
 
   return (
     <nav className="ml-auto flex items-center w-full justify-between">
@@ -26,7 +35,7 @@ export const Nav = () => {
                 `px-4 py-4 ${
                   isActive
                     ? "border-b-2 border-blue-600"
-                    : "text-gray-800 hover:text-blue-700"
+                    : "text-grey-800 hover:text-blue-700"
                 }`
               }
             >
@@ -38,10 +47,26 @@ export const Nav = () => {
 
       {/** Konto (desktop) */}
       <div className="hidden md:flex items-center space-x-4 ml-auto">
-        <span className="text-gray-800">User</span>
-        <button className="px-4 py-2 text-blue-900 rounded-lg hover:bg-blue-50 transition">
-          Logout
-        </button>
+        {loginData ? (
+          <>
+            <span className="text-gray-800">
+              {loginData?.firstname || loginData?.user?.firstname}
+            </span>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 text-blue-900 rounded-lg hover:bg-blue-50 transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setIsLoginOpen(true)}
+            className="px-4 py-2 text-blue-900 rounded-lg hover:bg-blue-50 transition"
+          >
+            Login
+          </button>
+        )}
       </div>
 
       {/** Mobil burger-menu */}
@@ -99,13 +124,35 @@ export const Nav = () => {
         <div className="mt-8 pt-6 px-6">
           <h3 className="font-semibold mb-2">Konto</h3>
           <div className="border rounded-md px-4 py-2 text-gray-500">
-            User
+          {loginData?.user?.firstname || "Ikke logget ind"}
           </div>
-          <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg">
-            Login / Logout
-          </button>
+
+          {loginData ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsOpen(false);
+              }}
+              className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setIsLoginOpen(true);
+                setIsOpen(false);
+              }}
+              className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg"
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
+
+      {/** Login modal */}
+      <LoginForm isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </nav>
   );
 };
