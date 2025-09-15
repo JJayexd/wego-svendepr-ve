@@ -1,43 +1,12 @@
-# Frontend
-Dette er mappen til din frontend løsning. Det er her du skal installere og bygge din løsning på svendeprøven.
+# React + Vite
 
-Du må gerne slette eller overskrive denne readme fil med din egen.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Opret React-app med Vite
-```
-npm create vite@latest my-app -- --template react
-cd my-app
-npm install
-npm run dev # start dev-server (tryk Ctrl+C for at stoppe)
-```
-*Brug react-ts efter --template hvis du vil køre typescript*
-## Første commit (git)
-```
-git init
-git add .
-git commit -m "Init: React + Vite"
-git branch -M main
-```
-## Push til GitHub med GitHub CLI
-#### Log ind hvis nødvendigt
-```
-gh auth login
-```
-## Opret repo på GitHub ud fra den nuværende mappe og push
-```
-gh repo create my-app --private --source . --remote origin --push
-```
-## Hurtige varianter
+Currently, two official plugins are available:
 
-Har du allerede oprettet repo’et på GitHub?
-```
-git remote add origin https://github.com/<brugernavn>/<repo>.git
-git push -u origin main
-```
-## Vil du lave et nyt commit og pushe ændringer:
-```
-git add .
-git commit -m "Beskriv kort hvad du ændrede"
-git push
-```
-### Tip: gh repo view -w åbner repoet i browseren.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
