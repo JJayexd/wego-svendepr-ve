@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../Providers/AuthProvider";
-import { LoginForm } from "../LoginForm/LoginForm"; // <- LoginForm er nu modal
+import { LoginForm } from "../LoginForm/LoginForm";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ export const Nav = () => {
 
   const navItemsDesktop = [
     { name: "Find et lift", path: "/lift" },
-    { name: "Sådan virker det", path: "/" },
+    { name: "Sådan virker det", path: "/skalværemodal" },
   ];
 
   const navItemsMobile = [
@@ -25,7 +25,7 @@ export const Nav = () => {
 
   return (
     <nav className="ml-auto flex items-center w-full justify-between">
-      {/** Desktop navigation (Efter logo) */}
+      {/** Desktop Nav */}
       <ul className="hidden md:flex space-x-6 ml-8">
         {navItemsDesktop.map((item) => (
           <li key={item.path}>
@@ -45,7 +45,7 @@ export const Nav = () => {
         ))}
       </ul>
 
-      {/** Konto (desktop) */}
+      {/** Konto (Desktop) */}
       <div className="hidden md:flex items-center space-x-4 ml-auto">
         {loginData ? (
           <>
@@ -69,7 +69,7 @@ export const Nav = () => {
         )}
       </div>
 
-      {/** Mobil burger-menu */}
+      {/** Mobil Burger-menu */}
       <div className="md:hidden ml-auto">
         <button
           className="flex items-center justify-center h-8 w-8"
@@ -151,7 +151,7 @@ export const Nav = () => {
         </div>
       </div>
 
-      {/** Login modal */}
+      {/** Login Modal */}
       <LoginForm isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </nav>
   );
