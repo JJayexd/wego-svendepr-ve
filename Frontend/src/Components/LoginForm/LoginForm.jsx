@@ -24,7 +24,7 @@ export const LoginForm = ({ isOpen, onClose }) => {
     }
   }, [data, setLoginData, onClose]);
 
-  // Hooks er kørt så kørers der Conditional Rendering.
+  // Hooks er kørt, så kørers der Conditional Rendering.
   if (!isOpen) {
     return null;
   }

@@ -6,11 +6,12 @@ import { LoginForm } from "../LoginForm/LoginForm";
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { loginData, setLoginData } = useAuth();
 
   const navItemsDesktop = [
     { name: "Find et lift", path: "/lift" },
-    { name: "Sådan virker det", path: "/skalværemodal" },
+    { name: "Sådan virker det", path: "/" },
   ];
 
   const navItemsMobile = [
@@ -20,32 +21,48 @@ export const Nav = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("accessToken");
-    setLoginData('');
+    setLoginData("");
   };
 
   return (
     <nav className="ml-auto flex items-center w-full justify-between">
-      {/** Desktop Nav */}
-      <ul className="hidden md:flex space-x-6 ml-8">
-        {navItemsDesktop.map((item) => (
-          <li key={item.path}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) =>
-                `px-4 py-4 ${
-                  isActive
-                    ? "border-b-2 border-blue-600"
-                    : "text-grey-800 hover:text-blue-700"
-                }`
-              }
-            >
-              {item.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+{/* Desktop Nav */}
+<ul className="hidden md:flex items-end space-x-6 ml-8">
+  {navItemsDesktop.map((item) => (
+    <li key={item.path}>
+      {item.name === "Sådan virker det" ? (
+        <NavLink
+          to={item.path}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsModalOpen(true);
+          }}
+          className={({ isActive }) =>
+            `inline-flex items-center p-4 ${
+              isActive ? "border-blue-600" : ""
+            } text-gray-800 hover:text-blue-700`
+          }
+        >
+          {item.name}
+        </NavLink>
+      ) : (
+        <NavLink
+          to={item.path}
+          className={({ isActive }) =>
+            `inline-flex items-center p-4 ${
+              isActive ? "border-blue-600" : ""
+            } text-gray-800 hover:text-blue-700`
+          }
+        >
+          {item.name}
+        </NavLink>
+      )}
+    </li>
+  ))}
+</ul>
 
-      {/** Konto (Desktop) */}
+
+      {/** Desktop Konto */}
       <div className="hidden md:flex items-center space-x-4 ml-auto">
         {loginData ? (
           <>
@@ -124,7 +141,7 @@ export const Nav = () => {
         <div className="mt-8 pt-6 px-6">
           <h3 className="font-semibold mb-2">Konto</h3>
           <div className="border rounded-md px-4 py-2 text-gray-500">
-          {loginData?.user?.firstname || "Ikke logget ind"}
+            {loginData?.user?.firstname || "Ikke logget ind"}
           </div>
 
           {loginData ? (
@@ -153,6 +170,25 @@ export const Nav = () => {
 
       {/** Login Modal */}
       <LoginForm isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+
+      {/** Sådan virker det Modal */}
+      {isModalOpen && (
+        <div className="hidden md:flex fixed inset-0 items-center justify-center bg-black/50 z-50">
+          <div className="relative bg-white rounded-2xl shadow-lg p-6 max-w-md w-full">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4"
+            >
+              <i className="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h2 className="text-2xl font-bold mb-4">Sådan virker det</h2>
+            <p className="text-gray-600">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi autem minus officia, assumenda sunt adipisci rerum praesentium eos excepturi facilis quae at fugit porro. At, perferendis. Sequi veniam in ullam.
+            </p>
+          </div>
+        </div>
+      )}
+
     </nav>
   );
 };

@@ -1,6 +1,6 @@
 export const Lift = () => {
     return (
-      <div className="p-6 bg-white w-[350px] md:w-[900px] m-auto flex flex-col md:flex-row gap-4 md:gap-6">
+      <div className="p-6 bg-white rounded-lg md:rounded-none w-[350px] md:w-[900px] m-auto flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="relative flex-1">
           <i className="fa-solid fa-location-crosshairs text-blue-500 absolute left-2 top-1/2 -translate-y-1/2"></i>
           <input
