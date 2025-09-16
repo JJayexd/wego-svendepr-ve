@@ -3,7 +3,7 @@ import desktopFooter from '../../assets/WeGoFooter1.svg'
 
 export const Footer = () => {
     return (
-        <footer className="mt-auto">
+        <footer className="mt-auto bg-gray-100">
             <img src={mobileFooter} alt="" className="md:hidden"/>
             <img src={desktopFooter} alt="" className="hidden md:block m-auto"/>
         </footer>

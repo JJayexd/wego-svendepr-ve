@@ -13,7 +13,7 @@ export const LiftList = ({ search }) => {
   if (error) return <p className="text-red-500">{error}</p>;
   if (!data) return null;
 
-  // Filtrer data efter kriterier
+  // Filtrer data efter søge kriterier
   const filtered = data.filter((lift) => {
     const fromMatch = search.from
       ? lift.cityDeparture.toLowerCase().includes(search.from.toLowerCase())
@@ -28,7 +28,7 @@ export const LiftList = ({ search }) => {
   return (
     <div className="space-y-4 mt-4 m-auto w-[300px] md:w-4xl">
       {filtered.length > 0 ? (
-        filtered.slice(0, 3).map((lift) => (
+        filtered.slice(0, 6).map((lift) => (
           <LiftCard key={lift.id} lift={lift} />
         ))
       ) : (

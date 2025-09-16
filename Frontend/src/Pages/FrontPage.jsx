@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { ImageSlider } from "../Components/ImageSlider/ImageSlider";
 import { LiftSearch } from "../Components/LiftSearch/LiftSearch";
 import { Text } from "../Components/Text/Text";
 
 export const FrontPage = () => {
+  const [search, setSearch] = useState({
+    from: "",
+    to: ""
+  });
+
   return (
     <>
       {/* Mobil */}
@@ -11,7 +17,7 @@ export const FrontPage = () => {
           <ImageSlider />
         </div>
         <div className="relative z-10 pt-20">
-          <LiftSearch />
+          <LiftSearch search={search} setSearch={setSearch} />
         </div>
       </div>
       <Text />
