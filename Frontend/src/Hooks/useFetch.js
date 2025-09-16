@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 export const useFetch = (initialUrl = null, initialOptions = {}) => {
   const [url, setUrl] = useState(initialUrl);
@@ -9,7 +9,7 @@ export const useFetch = (initialUrl = null, initialOptions = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Funktion du kan kalde for at lave et nyt fetch.
+  // Funktion der kaldes for at lave et nyt fetch.
   const doFetch = useCallback((fetchUrl, fetchOptions = {}) => {
     setUrl(fetchUrl);
     setOptions(fetchOptions);

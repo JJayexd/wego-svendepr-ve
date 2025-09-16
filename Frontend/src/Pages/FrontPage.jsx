@@ -1,5 +1,5 @@
 import { ImageSlider } from "../Components/ImageSlider/ImageSlider";
-import { Lift } from "../Components/Lift/Lift";
+import { LiftSearch } from "../Components/LiftSearch/LiftSearch";
 import { Text } from "../Components/Text/Text";
 
 export const FrontPage = () => {
@@ -11,7 +11,7 @@ export const FrontPage = () => {
           <ImageSlider />
         </div>
         <div className="relative z-10 pt-20">
-          <Lift />
+          <LiftSearch />
         </div>
       </div>
       <Text />

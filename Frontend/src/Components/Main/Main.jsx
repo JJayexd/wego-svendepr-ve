@@ -1,6 +1,6 @@
 export const Main = ({ children }) => {
     return (
-      <main className="min-h-[calc(95vh-128px)]">
+      <main className="min-h-[calc(95vh-128px)] bg-gray-100">
         {children}
       </main>
     )
