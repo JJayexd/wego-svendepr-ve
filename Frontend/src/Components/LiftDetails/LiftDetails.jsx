@@ -54,68 +54,65 @@ export const LiftDetails = () => {
           </div>
   
           <h2 className="font-semibold mt-8">Information</h2>
-          <div className="space-y-2 rounded-lg">
-  
-            <p className="font-semibold">
-              <i className="fa-solid fa-ferry mr-1"></i>
-              {lift.useFerry ? "Rute inkluderer en færge" : "Ingen færge"}
-            </p>
-  
-            <h2 className="font-semibold mt-4">Detaljer</h2>
-            <ul className="list-none md:grid grid-cols-2">
-              <li>
-                <i className="fa-solid fa-user-group mr-1"></i>
-                {lift.seatsTotal}
-              </li>
-              <li>
-                <i className="fa-solid fa-suitcase mr-1"></i>
-                {bagSizeMap[lift.bagSizeId] || "Ukendt"}
-              </li>
-              <li>
-                <i className="fa-solid fa-route mr-1"></i>
-                {lift.routeDeviation ? "Bilisten er fleksibel" : "Bilisten har en fast rute"}
-              </li>
-              <li>
-                <i className="fa-solid fa-bolt mr-1"></i>
-                {lift.isElectric ? "Bilen er elektrisk" : "Bilen er ikke elektrisk"}
-              </li>
-            </ul>
-  
-            <h4 className="font-semibold my-2">Præferencer</h4>
-            <ul className="grid grid-cols-2 gap-y-1">
-              <li className="flex items-center gap-2">
-                {lift.allowMusic ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  <i className="fa-solid fa-xmark"></i>
-                )}
-                Musik
-              </li>
-              <li className="flex items-center gap-2">
-                {lift.allowPets ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  <i className="fa-solid fa-xmark"></i>
-                )}
-                Kæledyr
-              </li>
-              <li className="flex items-center gap-2">
-                {lift.allowSmoking ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  <i className="fa-solid fa-xmark"></i>
-                )}
-                Rygning
-              </li>
-              <li className="flex items-center gap-2">
-                {lift.allowChildren ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  <i className="fa-solid fa-xmark"></i>
-                )}
-                Børn
-              </li>
-            </ul>
+            <div className="space-y-2 rounded-lg">
+              <p className="font-semibold">
+                <i className="fa-solid fa-ferry mr-1"></i>
+                {lift.useFerry ? "Rute inkluderer en færge" : "Ingen færge"}
+              </p>
+              <h2 className="font-semibold mt-4">Detaljer</h2>
+                <ul className="list-none md:grid grid-cols-2">
+                  <li>
+                    <i className="fa-solid fa-user-group mr-1"></i>
+                    {lift.seatsTotal}
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-suitcase mr-1"></i>
+                    {bagSizeMap[lift.bagSizeId] || "Ukendt"}
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-route mr-1"></i>
+                    {lift.routeDeviation ? "Bilisten er fleksibel" : "Bilisten har en fast rute"}
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-bolt mr-1"></i>
+                    {lift.isElectric ? "Bilen er elektrisk" : "Bilen er ikke elektrisk"}
+                  </li>
+                </ul>
+              <h4 className="font-semibold my-2">Præferencer</h4>
+              <ul className="grid grid-cols-2 gap-y-1">
+                <li className="flex items-center gap-2">
+                  {lift.allowMusic ? (
+                    <i className="fa-solid fa-check"></i>
+                  ) : (
+                    <i className="fa-solid fa-xmark"></i>
+                  )}
+                  Musik
+                </li>
+                <li className="flex items-center gap-2">
+                  {lift.allowPets ? (
+                    <i className="fa-solid fa-check"></i>
+                  ) : (
+                    <i className="fa-solid fa-xmark"></i>
+                  )}
+                  Kæledyr
+                </li>
+                <li className="flex items-center gap-2">
+                  {lift.allowSmoking ? (
+                    <i className="fa-solid fa-check"></i>
+                  ) : (
+                    <i className="fa-solid fa-xmark"></i>
+                  )}
+                  Rygning
+                </li>
+                <li className="flex items-center gap-2">
+                  {lift.allowChildren ? (
+                    <i className="fa-solid fa-check"></i>
+                  ) : (
+                    <i className="fa-solid fa-xmark"></i>
+                  )}
+                  Børn
+                </li>
+              </ul>
           </div>
   
           {lift.comment && (
