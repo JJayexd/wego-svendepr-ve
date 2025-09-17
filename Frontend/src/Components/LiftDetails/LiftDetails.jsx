@@ -20,6 +20,12 @@ export const LiftDetails = () => {
   const lift = Array.isArray(data) ? data[0] : data;
   if (!lift) return <p>Lift ikke fundet</p>;
 
+  const date = new Date(lift.departureDate);
+  const departureDate = date.toLocaleTimeString("da-DK", {
+      hour: "2-digit",
+      minute: "2-digit",
+  });
+
   const bagSizeMap = {
     1: "Lille skuldertaske eller rygsæk",
     2: "Mellem skuldertaske eller rygsæk",
@@ -42,15 +48,17 @@ export const LiftDetails = () => {
           <h2 className="font-bold">
             {lift.cityDeparture} til {lift.cityDestination}
           </h2>
-          <p>{lift.departureDate}</p>
+          <p>
+          {date.toLocaleDateString("da-DK")}
+          </p>
   
           <div className="flex flex-row my-2 gap-2">
             <p className="bg-gray-100 rounded-lg p-2">
-              Afgang: 10:00
+              Afgang: {departureDate}
             </p>
-            <p className="bg-gray-100 rounded-lg p-2">
+            {/* <p className="bg-gray-100 rounded-lg p-2">
               Ankomst: 10:00
-            </p>
+            </p> */}
           </div>
   
           <h2 className="font-semibold mt-8">Information</h2>
