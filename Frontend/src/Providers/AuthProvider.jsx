@@ -3,7 +3,7 @@ import { useState, useEffect, createContext, useContext } from "react";
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-    const [ loginData, setLoginData ] = useState('')
+    const [ loginData, setLoginData ] = useState(null)
 
     useEffect(() => {
         if(sessionStorage.getItem('accessToken')) {

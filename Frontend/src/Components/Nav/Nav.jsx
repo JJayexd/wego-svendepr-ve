@@ -21,45 +21,45 @@ export const Nav = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("accessToken");
-    setLoginData("");
+    setLoginData(null);
   };
 
   return (
     <nav className="ml-auto flex items-center w-full justify-between">
-{/* Desktop Nav */}
-<ul className="hidden md:flex items-end space-x-6 ml-8">
-  {navItemsDesktop.map((item) => (
-    <li key={item.path}>
-      {item.name === "Sådan virker det" ? (
-        <NavLink
-          to={item.path}
-          onClick={(e) => {
-            e.preventDefault();
-            setIsModalOpen(true);
-          }}
-          className={({ isActive }) =>
-            `inline-flex items-center p-4 ${
-              isActive ? "border-blue-600" : ""
-            } text-gray-800 hover:text-blue-700`
-          }
-        >
-          {item.name}
-        </NavLink>
-      ) : (
-        <NavLink
-          to={item.path}
-          className={({ isActive }) =>
-            `inline-flex items-center p-4 ${
-              isActive ? "border-blue-600" : ""
-            } text-gray-800 hover:text-blue-700`
-          }
-        >
-          {item.name}
-        </NavLink>
-      )}
-    </li>
-  ))}
-</ul>
+      {/* Desktop Nav */}
+      <ul className="hidden md:flex items-end space-x-6 ml-8">
+        {navItemsDesktop.map((item) => (
+          <li key={item.path}>
+            {item.name === "Sådan virker det" ? (
+              <NavLink
+                to={item.path}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsModalOpen(true);
+                }}
+                className={({ isActive }) =>
+                  `inline-flex items-center p-4 ${
+                    isActive ? "border-blue-600" : ""
+                  } text-gray-800 hover:text-blue-700`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ) : (
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `inline-flex items-center p-4 ${
+                    isActive ? "border-blue-600" : ""
+                  } text-gray-800 hover:text-blue-700`
+                }
+              >
+                {item.name}
+              </NavLink>
+            )}
+          </li>
+        ))}
+      </ul>
 
 
       {/** Desktop Konto */}

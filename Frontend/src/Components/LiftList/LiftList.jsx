@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { useFetch } from '../../Hooks/useFetch';
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useFetch } from "../../Hooks/useFetch";
 import { LiftCard } from "../LiftCard/LiftCard";
 
 export const LiftList = ({ search }) => {
@@ -13,7 +14,6 @@ export const LiftList = ({ search }) => {
   if (error) return <p className="text-red-500">{error}</p>;
   if (!data) return null;
 
-  // Filtrer data efter søge kriterier
   const filtered = data.filter((lift) => {
     const fromMatch = search.from
       ? lift.cityDeparture.toLowerCase().includes(search.from.toLowerCase())
@@ -29,7 +29,9 @@ export const LiftList = ({ search }) => {
     <div className="space-y-4 mt-4 m-auto w-[300px] md:w-4xl">
       {filtered.length > 0 ? (
         filtered.slice(0, 6).map((lift) => (
-          <LiftCard key={lift.id} lift={lift} />
+          <Link key={lift.id} to={`/trips/${lift.id}`}>
+            <LiftCard lift={lift} />
+          </Link>
         ))
       ) : (
         <p className="text-gray-500">Ingen resultater</p>
