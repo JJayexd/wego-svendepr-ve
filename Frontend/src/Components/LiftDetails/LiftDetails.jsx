@@ -136,7 +136,7 @@ export const LiftDetails = () => {
               <img
                 src={lift.user?.imageUrl}
                 alt={lift.user?.firstname}
-                className="w-12 h-12 rounded-full"
+                className="w-14 h-14 rounded-full"
               />
               <div>
                 <p className="font-semibold">
@@ -161,10 +161,13 @@ export const LiftDetails = () => {
         <div className="">
           <h3 className="font-semibold mt-4">Pladser</h3>
             <div className="bg-white p-4 rounded-lg shadow">
-              <p className="font-semibold rounded-full border p-2">
+              <p className="font-semibold rounded-full border md:border-none p-2">
                 Pris {lift.pricePerSeat} DKK
               </p>
-              <button className="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg">
+              <button 
+                onClick={() => navigate(`/trips/${id}/book`)}
+                className="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg"
+              >
                 Book
               </button>
           </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 export const useFetch = (initialUrl = null, initialOptions = {}) => {
   const [url, setUrl] = useState(initialUrl);
