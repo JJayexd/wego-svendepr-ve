@@ -6,7 +6,7 @@ export const LiftCard = ({ lift }) => {
     });
 
     return (
-        <div className="bg-white p-4 rounded-t w-[300px] md:w-[700px] flex flex-col md:flex-row md:items-start md:justify-between ">
+        <div className="bg-white p-4 my-4 rounded-t w-[300px] md:w-[700px] flex flex-col md:flex-row md:items-start md:justify-between ">
             
             {/* Bruger Info, Desktop */}
             <div className="hidden md:flex flex-col items-center md:w-40">
