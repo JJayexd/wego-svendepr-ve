@@ -16,7 +16,7 @@ export const LiftFilter = ({ filters, setFilters }) => {
   };
 
   return (
-    <aside className="hidden md:block md:w-1xl md:bg-white md:shadow md:p-4 md:space-y-4">
+    <aside className="hidden md:block md:w-1xl md:bg-white md:shadow md:p-4 md:space-y-4 md:rounded-lg">
       {/* Antal Sæder */}
       <div>
         <label className="flex justify-between font-semibold">
