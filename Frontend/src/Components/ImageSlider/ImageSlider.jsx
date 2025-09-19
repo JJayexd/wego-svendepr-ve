@@ -25,7 +25,7 @@ export const ImageSlider = () => {
         <div
           key={slide.id}
           className={`absolute inset-0 transition-opacity duration-700 ${
-            index === current ? "opacity-100 relative" : "opacity-0"
+            index === current ? "relative" : "opacity-0"
           }`}
         >
           <img
@@ -36,7 +36,7 @@ export const ImageSlider = () => {
         </div>
       ))}
 
-      {/* Skift med dots */}
+      {/* Skift */}
       <div className="absolute bottom-4 w-full flex justify-center space-x-2">
         {data.map((_, index) => (
           <button

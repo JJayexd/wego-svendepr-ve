@@ -24,7 +24,6 @@ export const LoginForm = ({ isOpen, onClose }) => {
     }
   }, [data, setLoginData, onClose]);
 
-  // Hooks er kørt, så kørers der conditional rendering.
   if (!isOpen) {
     return null;
   }
@@ -68,13 +67,13 @@ export const LoginForm = ({ isOpen, onClose }) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+              className="w-full bg-blue-500 text-white mt-2 py-2 rounded hover:bg-blue-600"
             >
               {loading ? "Logger ind.." : "Login"}
             </button>
           </form>
         ) : (
-          <p className="text-center">Du er allerede logget ind</p>
+          <p className="text-center">Du er logget ind.</p>
         )}
       </div>
     </div>
