@@ -31,9 +31,9 @@ export const LiftBook = () => {
         }
     }, [id, fetchLift]);
 
-    if (liftLoading) return <p>Henter tur...</p>;
+    if (liftLoading) return <p>Henter...</p>;
     if (liftError) return <p>{liftError}</p>;
-    if (!lift) return <p>Ingen data fundet.</p>;
+    if (!lift) return <p>Ingen data.</p>;
 
     const seatsLeft = lift.seatsTotal - (lift.seatsBooked || 0);
 
@@ -98,7 +98,7 @@ export const LiftBook = () => {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder=""
-                        className="w-full bg-white border rounded-lg p-2 h-24 resize-none"
+                        className="w-full md:w-[400px] bg-white border rounded-lg p-2 h-24"
                     />
                 </div>
 
@@ -107,7 +107,7 @@ export const LiftBook = () => {
                     disabled={bookingLoading}
                     className="w-[200px] bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
                 >
-                    {bookingLoading ? "Sender..." : "Bekræft booking"}
+                    {bookingLoading ? "Sender..." : "Bekræft"}
                 </button>
             </form>
 

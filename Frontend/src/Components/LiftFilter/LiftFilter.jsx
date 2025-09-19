@@ -1,25 +1,17 @@
-import { useState } from 'react';
-
-export const LiftFilter = () => {
-  const [seats, setSeats] = useState(1);
-  const [baggage, setBaggage] = useState("");
-  const [comfort, setComfort] = useState(false);
-  const [preferences, setPreferences] = useState({
-    music: false,
-    pets: false,
-    kids: false,
-    smoking: false,
-  });
+export const LiftFilter = ({ filters, setFilters }) => {
+  const { seats, baggage, comfort, preferences } = filters;
 
   const resetFilters = () => {
-    setSeats(1);
-    setBaggage("");
-    setComfort(false);
-    setPreferences({
-      music: false,
-      pets: false,
-      kids: false,
-      smoking: false,
+    setFilters({
+      seats: 1,
+      baggage: "",
+      comfort: false,
+      preferences: {
+        music: false,
+        pets: false,
+        kids: false,
+        smoking: false,
+      },
     });
   };
 
@@ -34,9 +26,11 @@ export const LiftFilter = () => {
         <input
           type="range"
           min="1"
-          max="6"
+          max="4"
           value={seats}
-          onChange={(e) => setSeats(e.target.value)}
+          onChange={(e) =>
+            setFilters({ ...filters, seats: parseInt(e.target.value) })
+          }
           className="w-full accent-blue-500"
         />
       </div>
@@ -48,7 +42,7 @@ export const LiftFilter = () => {
           {["Lille", "Mellem", "Stor"].map((size) => (
             <button
               key={size}
-              onClick={() => setBaggage(size)}
+              onClick={() => setFilters({ ...filters, baggage: size })}
               className={`flex flex-col items-center text-sm ${
                 baggage === size ? "text-blue-500 font-semibold" : "text-gray-600"
               }`}
@@ -69,7 +63,9 @@ export const LiftFilter = () => {
           <input
             type="checkbox"
             checked={comfort}
-            onChange={(e) => setComfort(e.target.checked)}
+            onChange={(e) =>
+              setFilters({ ...filters, comfort: e.target.checked })
+            }
             className="w-5 h-5"
           />
           Højest to personer på bagsædet
@@ -87,17 +83,17 @@ export const LiftFilter = () => {
           { key: "kids", label: "Børn" },
           { key: "smoking", label: "Rygning" },
         ].map((pref) => (
-          <label
-            key={pref.key}
-            className="flex items-center gap-2 text-gray-700"
-          >
+          <label key={pref.key} className="flex items-center gap-2 text-gray-700">
             <input
               type="checkbox"
               checked={preferences[pref.key]}
               onChange={(e) =>
-                setPreferences({
-                  ...preferences,
-                  [pref.key]: e.target.checked,
+                setFilters({
+                  ...filters,
+                  preferences: {
+                    ...preferences,
+                    [pref.key]: e.target.checked,
+                  },
                 })
               }
               className="w-5 h-5"
@@ -109,7 +105,6 @@ export const LiftFilter = () => {
 
       <hr />
 
-      {/* Reset */}
       <button
         onClick={resetFilters}
         className="w-full bg-blue-500 text-white py-2 rounded-full"

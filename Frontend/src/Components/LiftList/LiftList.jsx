@@ -3,16 +3,16 @@ import { useEffect } from "react";
 import { useFetch } from "../../Hooks/useFetch";
 import { LiftCard } from "../LiftCard/LiftCard";
 
-export const LiftList = ({ search }) => {
+export const LiftList = ({ search, filters }) => {
   const { data, loading, error, doFetch } = useFetch();
 
   useEffect(() => {
-    doFetch("http://localhost:4000/api/trips"); 
+    doFetch("http://localhost:4000/api/trips");
   }, [doFetch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Henter...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
-  if (!data) return null;
+  if (!data) return <p>Ingen data.</p>;
 
   const filtered = data.filter((lift) => {
     const fromMatch = search.from
@@ -22,7 +22,24 @@ export const LiftList = ({ search }) => {
       ? lift.cityDestination.toLowerCase().includes(search.to.toLowerCase())
       : true;
 
-    return fromMatch && toMatch;
+    const availableSeats = lift.seatsTotal - lift.seatsBooked;
+    const seatsMatch = availableSeats >= filters.seats;
+
+    const baggageMap = { Lille: 1, Mellem: 2, Stor: 3 };
+    const baggageMatch = filters.baggage
+      ? lift.bagSizeId === baggageMap[filters.baggage]
+      : true;
+
+    const comfortMatch = filters.comfort ? lift.hasComfort : true;
+
+    const prefs = filters.preferences;
+    const prefMatch =
+      (!prefs.music || lift.allowMusic) &&
+      (!prefs.pets || lift.allowPets) &&
+      (!prefs.kids || lift.allowChildren) &&
+      (!prefs.smoking || lift.allowSmoking);
+
+    return fromMatch && toMatch && seatsMatch && baggageMatch && comfortMatch && prefMatch;
   });
 
   return (
@@ -39,3 +56,4 @@ export const LiftList = ({ search }) => {
     </div>
   );
 };
+

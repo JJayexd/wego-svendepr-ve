@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetch } from "../../Hooks/useFetch";
+import { ReviewModal } from "../ReviewModal/ReviewModal";
 
 export const LiftDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data, loading, error, doFetch } = useFetch();
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+
 
   useEffect(() => {
     if (id) {
@@ -13,7 +16,7 @@ export const LiftDetails = () => {
     }
   }, [id, doFetch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Henter...</p>;
   if (error) return <p>{error}</p>;
   if (!data) return <p>Ingen data.</p>;
 
@@ -130,33 +133,52 @@ export const LiftDetails = () => {
             </div>
           )}
   
-          <h3 className="font-semibold mt-4">Chaufføren</h3>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <div className="flex items-center gap-2">
-              <img
-                src={lift.user?.imageUrl}
-                alt={lift.user?.firstname}
-                className="w-14 h-14 rounded-full"
-              />
-              <div>
-                <p className="font-semibold">
-                  {lift.user?.firstname} {lift.user?.lastname}
-                </p>
-                <p className="text-sm text-gray-500">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <i
-                      key={i}
-                      className={
-                        i < lift.user.avgStars
-                          ? "fa-solid fa-star text-yellow-400"
-                          : "fa-solid fa-star text-gray-300"
-                      }
-                    ></i>
-                  ))}
-                </p>
-              </div>
-            </div>
-          </div>
+  <h3 className="font-semibold mt-4">Chaufføren</h3>
+    <div className="bg-white p-4">
+      <div className="flex items-center gap-2">
+        <img
+          src={lift.user?.imageUrl}
+          alt={lift.user?.firstname}
+          className="w-14 h-14 rounded-full"
+        />
+
+        <div className="">
+          <p className="font-semibold">
+            {lift.user?.firstname} {lift.user?.lastname}
+          </p>
+          <p className="text-sm text-gray-500 flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <i
+                key={i}
+                className={
+                  i < lift.user.avgStars
+                    ? "fa-solid fa-star text-yellow-400"
+                    : "fa-solid fa-star text-gray-300"
+                }
+              ></i>
+            ))}
+          </p>
+
+          {/* Desktop */}
+          <button
+            onClick={() => setIsReviewOpen(true)}
+            className="hidden md:block mt-2 text-sm text-white bg-blue-500 rounded-full px-4 py-2 hover:bg-blue-600"
+          >
+            Anmeld
+          </button>
+        </div>
+
+        {/* Mobile */}
+        <button
+          onClick={() => setIsReviewOpen(true)}
+          className="block md:hidden ml-auto text-gray-600"
+        >
+          <i className="fa-regular fa-comment text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+
 
         <div className="">
           <h3 className="font-semibold mt-4">Pladser</h3>
@@ -182,6 +204,13 @@ export const LiftDetails = () => {
 
         </div>
       </div>
+
+      <ReviewModal
+        isModalOpen={isReviewOpen}
+        setIsModalOpen={setIsReviewOpen}
+        reviewedUserId={lift.user.id}
+      />
+
     </div>
   );
   

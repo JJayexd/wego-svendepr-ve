@@ -9,15 +9,27 @@ export const LiftPage = () => {
     to: ""
   });
 
+  const [filters, setFilters] = useState({
+    seats: 1,
+    baggage: "",
+    comfort: false,
+    preferences: {
+      music: false,
+      pets: false,
+      kids: false,
+      smoking: false,
+    },
+  });
+
   return (
     <>
       <LiftSearch search={search} setSearch={setSearch} />     
       <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 mt-4 gap-6">
         <div className="hidden md:block w-[220px]">
-          <LiftFilter />
+          <LiftFilter filters={filters} setFilters={setFilters} />
         </div>
-        <div className="">
-          <LiftList search={search} />
+        <div className="flex-1">
+          <LiftList search={search} filters={filters} />
         </div>
       </div>
     </>
